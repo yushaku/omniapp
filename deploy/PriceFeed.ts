@@ -3,7 +3,7 @@ import assert from 'assert'
 import { type DeployFunction } from 'hardhat-deploy/types'
 import { parseUnits } from 'ethers/lib/utils'
 
-const contractName = 'PriceFeed'
+const contractName = 'MyPriceFeed'
 
 const deploy: DeployFunction = async (hre) => {
   const { getNamedAccounts, deployments, network } = hre

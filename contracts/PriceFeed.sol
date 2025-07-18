@@ -13,7 +13,7 @@ interface IPriceFeed {
  * @dev This contract would be deployed on target chains (e.g., Ethereum, Polygon, Arbitrum)
  *      and the ReadPublic contract can read its `price` value from any other supported chain.
  */
-contract PriceFeed is Ownable, IPriceFeed {
+contract MyPriceFeed is Ownable, IPriceFeed {
     uint256 private price;
 
     constructor(uint256 _price) Ownable(msg.sender) {

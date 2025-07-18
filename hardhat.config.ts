@@ -8,14 +8,15 @@ import 'dotenv/config'
 import 'hardhat-deploy'
 import 'hardhat-contract-sizer'
 import '@nomiclabs/hardhat-ethers'
-// import '@nomicfoundation/hardhat-verify'
+import '@nomicfoundation/hardhat-verify'
 // import '@nomiclabs/hardhat-etherscan'
 import '@layerzerolabs/toolbox-hardhat'
 import { HardhatUserConfig, HttpNetworkAccountsUserConfig } from 'hardhat/types'
 
 import { EndpointId } from '@layerzerolabs/lz-definitions'
 
-import './tasks/sendString'
+// import './tasks/sendString'
+import './tasks/oappRead'
 
 // Set your preferred authentication method
 //
@@ -46,12 +47,12 @@ const config: HardhatUserConfig = {
         compilers: [
             {
                 version: '0.8.22',
-                settings: {
-                    optimizer: {
-                        enabled: true,
-                        runs: 200,
-                    },
-                },
+                // settings: {
+                //     optimier: {
+                //         enabled: true,
+                //         runs: 200,
+                //     },
+                // },
             },
         ],
     },
@@ -68,16 +69,16 @@ const config: HardhatUserConfig = {
         },
         'base-testnet': {
             url: 'https://base-sepolia.gateway.tenderly.co',
-            eid: EndpointId.BASE_V2_TESTNET,
+            eid: EndpointId.BASESEP_V2_TESTNET,
             accounts,
         },
         'monad-testnet': {
-            url: "https://monad-testnet.drpc.org",
+            url: 'https://rpc.ankr.com/monad_testnet',
             eid: EndpointId.MONAD_V2_TESTNET,
             accounts,
         },
         hardhat: {
-            // Need this for testing because TestHelperOz5.sol is exceeding the compiled contract size limit
+            // Need this for testing because TestHelperO5.sol is exceeding the compiled contract size limit
             allowUnlimitedContractSize: true,
         },
     },
@@ -86,11 +87,12 @@ const config: HardhatUserConfig = {
             default: 0, // wallet address of index[0], of the mnemonic in .env
         },
     },
-    // etherscan: {
-    //     apiKey: {
-    //         "base-testnet": process.env.BASESCAN_API_KEY || '',
-    //     },
-    // },
+    etherscan: {
+        apiKey: process.env.ETHERSCAN_API_KEY || '',
+    },
+    sourcify: {
+        enabled: true,
+    },
 }
 
 export default config

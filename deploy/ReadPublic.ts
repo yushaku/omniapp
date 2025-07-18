@@ -1,6 +1,6 @@
 import { ChannelId } from '@layerzerolabs/lz-definitions'
 import assert from 'assert'
-import { ContractName, writeDownAddress } from '../utils'
+import { ContractName } from '../utils'
 import { type DeployFunction } from 'hardhat-deploy/types'
 
 const deploy: DeployFunction = async (hre) => {
@@ -13,19 +13,21 @@ const deploy: DeployFunction = async (hre) => {
   console.log(`Network: ${network.name}`)
   console.log(`Deployer: ${deployer}`)
 
-  const lzEndpointV2OnBaseTestnet = '0x6EDCE65403992e310A62460808c4b910D972f10f'
+  const endpointV2Deployment = await hre.deployments.get('EndpointV2')
   const channelId = ChannelId.READ_CHANNEL_1
 
   const { address } = await deploy(ContractName.ReadPublic, {
     from: deployer,
-    args: [lzEndpointV2OnBaseTestnet, deployer, channelId],
+    args: [
+      endpointV2Deployment.address,
+      deployer,
+      channelId,
+    ],
     log: true,
     skipIfAlreadyDeployed: false,
   })
 
   console.log(`Deployed contract: ${ContractName.ReadPublic}, network: ${network.name}, address: ${address}`)
-
-  await writeDownAddress(ContractName.ReadPublic, address, network.name)
 }
 
 deploy.tags = [ContractName.ReadPublic]
