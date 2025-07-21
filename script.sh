@@ -6,22 +6,29 @@ npx hardhat deploy --tags MyPriceFeed --network arbitrum-testnet
 
 # Deploy ReadPublic on base-testnet
 npx hardhat deploy --tags ReadPublic --network base-testnet
+npx hardhat deploy --tags ReadPublic --network sepolia 
+npx hardhat deploy --tags ReadPublicUpgradeable --network sepolia 
 # 0x7d587C5751BbC7C583296564474F257678A952Ec
-# ReadPublic [base] ----> PriceFeed [monad]
 
-# readCrossChain
-# success
-npx hardhat run scripts/readPrice.ts --network monad-testnet 
+# readPrice
 npx hardhat run scripts/readPrice.ts --network arbitrum-testnet 
 
-# failed
-npx hardhat run scripts/readCrossChain.ts --network base-testnet
-
+# success: ReadPublic [sepolia] ----> PriceFeed [arbitrum]
+npx hardhat lz:oapp-read:read \
+--network sepolia \
+--target-contract 0x7d587C5751BbC7C583296564474F257678A952Ec \
+--target-eid 40231
 
 npx hardhat lz:oapp-read:read \
 --network base-testnet \
 --target-contract 0x7d587C5751BbC7C583296564474F257678A952Ec \
 --target-eid 40231
 
+npx hardhat run scripts/verify.ts --network sepolia
 
-npx hardhat run scripts/verify.ts --network arbitrum-testnet
+# deploy to lz 
+npx hardhat lz:deploy
+# config endpoint + DVN + executor
+npx hardhat lz:oapp-read:wire --oapp-config layerzero.config.ts
+
+

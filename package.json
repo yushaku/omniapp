@@ -15,7 +15,7 @@
     "test": "$npm_execpath run test:forge && $npm_execpath run test:hardhat",
     "test:forge": "forge test",
     "test:hardhat": "hardhat test",
-    "deploy:hardhat": "pnpm hardhat lz:deploy --oapp-config layerzero.config.ts"
+    "deploy:hardhat": "pnpm hardhat lz:deploy"
   },
   "resolutions": {
     "ethers": "^5.7.2",
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.23.9",
+    "@layerzerolabs/devtools-evm-hardhat": "^3.0.0",
     "@layerzerolabs/eslint-config-next": "~2.3.39",
     "@layerzerolabs/io-devtools": "~0.2.0",
     "@layerzerolabs/lz-definitions": "^3.0.75",
@@ -37,12 +38,11 @@
     "@layerzerolabs/test-devtools-evm-foundry": "~6.0.3",
     "@layerzerolabs/toolbox-foundry": "~0.1.12",
     "@layerzerolabs/toolbox-hardhat": "~0.6.11",
-    "@nomicfoundation/hardhat-ethers": "^3.0.5",
     "@nomicfoundation/hardhat-verify": "^2.0.14",
     "@nomiclabs/hardhat-ethers": "^2.2.3",
-    "@nomiclabs/hardhat-etherscan": "^3.1.8",
     "@openzeppelin/contracts": "^5.0.2",
     "@openzeppelin/contracts-upgradeable": "^5.0.2",
+    "@openzeppelin/hardhat-upgrades": "^1.28.0",
     "@rushstack/eslint-patch": "^1.7.0",
     "@types/chai": "^4.3.11",
     "@types/mocha": "^10.0.6",
@@ -55,7 +55,7 @@
     "ethers": "^5.7.2",
     "hardhat": "^2.22.10",
     "hardhat-contract-sizer": "^2.10.0",
-    "hardhat-deploy": "^0.12.1",
+    "hardhat-deploy": "1.0.4",
     "mocha": "^10.2.0",
     "prettier": "^3.2.5",
     "solhint": "^4.1.1",

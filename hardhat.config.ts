@@ -10,6 +10,7 @@ import 'hardhat-contract-sizer'
 import '@nomiclabs/hardhat-ethers'
 import '@nomicfoundation/hardhat-verify'
 // import '@nomiclabs/hardhat-etherscan'
+import '@openzeppelin/hardhat-upgrades'
 import '@layerzerolabs/toolbox-hardhat'
 import { HardhatUserConfig, HttpNetworkAccountsUserConfig } from 'hardhat/types'
 
@@ -57,6 +58,11 @@ const config: HardhatUserConfig = {
         ],
     },
     networks: {
+        'sepolia': {
+            eid: EndpointId.SEPOLIA_V2_TESTNET,
+            url: 'https://ethereum-sepolia-rpc.publicnode.com',
+            accounts,
+        },
         'optimism-testnet': {
             eid: EndpointId.OPTSEP_V2_TESTNET,
             url: process.env.RPC_URL_OP_SEPOLIA || 'https://optimism-sepolia.gateway.tenderly.co',

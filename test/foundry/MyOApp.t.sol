@@ -47,7 +47,7 @@ contract MyOAppTest is TestHelperOz5 {
         this.wireOApps(oapps);
     }
 
-    function test_constructor() public {
+    function test_constructor() public view {
         assertEq(aOApp.owner(), address(this));
         assertEq(bOApp.owner(), address(this));
 

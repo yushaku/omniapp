@@ -75,9 +75,9 @@ task('lz:oapp-read:read', 'Sends a read request to fetch data from a target cont
       let readPublicContract
       let contractAddress: string
       try {
-        const readPublicDeployment = await hre.deployments.get('ReadPublic')
+        const readPublicDeployment = await hre.deployments.get('ReadPublicUpgradeable')
         contractAddress = readPublicDeployment.address
-        readPublicContract = await hre.ethers.getContractAt('ReadPublic', contractAddress, signer as any)
+        readPublicContract = await hre.ethers.getContractAt('ReadPublicUpgradeable', contractAddress, signer as any)
         logger.info(`ReadPublic contract found at: ${contractAddress}`)
       } catch (error) {
         DebugLogger.printErrorAndFixSuggestion(
