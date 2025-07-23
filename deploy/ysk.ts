@@ -1,7 +1,7 @@
 import assert from 'assert'
 import { type DeployFunction } from 'hardhat-deploy/types'
 
-const contractName = 'ExampleContract'
+const contractName = 'YSK'
 
 const deploy: DeployFunction = async (hre) => {
     const { getNamedAccounts, deployments, network } = hre
@@ -12,12 +12,13 @@ const deploy: DeployFunction = async (hre) => {
 
     console.log(`Network: ${network.name}`)
     console.log(`Deployer: ${deployer}`)
+    const endpointV2Deployment = await hre.deployments.get('EndpointV2')
 
     const { address } = await deploy(contractName, {
         from: deployer,
-        args: [],
+        args: ['Yushaku', 'YSK', endpointV2Deployment.address, deployer],
         log: true,
-        skipIfAlreadyDeployed: false,
+        skipIfAlreadyDeployed: true,
     })
 
     console.log(`Deployed contract: ${contractName}, network: ${network.name}, address: ${address}`)

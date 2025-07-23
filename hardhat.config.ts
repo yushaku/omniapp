@@ -18,6 +18,7 @@ import { EndpointId } from '@layerzerolabs/lz-definitions'
 
 // import './tasks/sendString'
 import './tasks/oappRead'
+import './tasks/verifyContract'
 
 // Set your preferred authentication method
 //
@@ -58,9 +59,14 @@ const config: HardhatUserConfig = {
         ],
     },
     networks: {
-        'sepolia': {
+        sepolia: {
             eid: EndpointId.SEPOLIA_V2_TESTNET,
             url: 'https://ethereum-sepolia-rpc.publicnode.com',
+            accounts,
+        },
+        'bsc-testnet': {
+            eid: EndpointId.BSC_V2_TESTNET,
+            url: 'https://bsc-testnet-dataseed.bnbchain.org',
             accounts,
         },
         'optimism-testnet': {

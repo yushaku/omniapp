@@ -59,10 +59,6 @@ const deploy: DeployFunction = async (hre) => {
     console.log(
         `Deployed upgradeable proxy for contract: ${contractName}, network: ${network.name}, address: ${res.address}`
     )
-
-    // await verifyContract(res.address, [endpointV2Deployment.address, deployer, channelId])
-
-    await verifyContract('0x1af306d5bb8eb20c321c733274dc45cf5f0b67a9', [])
 }
 
 deploy.tags = [contractName]

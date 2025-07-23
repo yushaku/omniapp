@@ -15,7 +15,7 @@
     "test": "$npm_execpath run test:forge && $npm_execpath run test:hardhat",
     "test:forge": "forge test",
     "test:hardhat": "hardhat test",
-    "deploy:hardhat": "pnpm hardhat lz:deploy"
+    "deploy": "hardhat lz:deploy"
   },
   "resolutions": {
     "ethers": "^5.7.2",
